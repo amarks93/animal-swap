@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 class Main extends React.Component {
   constructor() {
     super();
-    this.state = { animal: "Cat" };
+    this.state = { animal: "" };
     this.chooseAnimal = this.chooseAnimal.bind(this);
   }
 

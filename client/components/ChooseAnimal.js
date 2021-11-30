@@ -4,6 +4,7 @@ const ChooseAnimal = (props) => {
   const chooseAnimal = props.chooseAnimal;
   return (
     <select onChange={(evt) => chooseAnimal(evt.target.value)}>
+      <option>Pick an Animal!</option>
       <option value="Cat">Cat</option>
       <option value="Pig">Pig</option>
     </select>
