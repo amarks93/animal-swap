@@ -18,7 +18,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="main">
         <Header />
         <ChooseAnimal chooseAnimal={this.chooseAnimal} />
         {this.state.animal === "Cat" ? <Cat /> : <Pig />}
