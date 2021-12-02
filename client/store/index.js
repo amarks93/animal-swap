@@ -21,8 +21,31 @@ import { catsFavoriteThings, pigsFavoriteThings } from "../data";
 import { createStore, applyMiddleware } from "redux";
 import loggerMiddleware from "redux-logger";
 
-function reducer(state = {}, action) {
+const initialState = { pigsThings: [], catsThings: [] };
+
+const SET_PIGS_THINGS = "SET_PIGS_THINGS";
+const SET_CATS_THINGS = "SET_CATS_THINGS";
+
+export const setPigsThings = () => {
+  return {
+    type: SET_PIGS_THINGS,
+    pigsFavoriteThings,
+  };
+};
+
+export const setCatsThings = () => {
+  return {
+    type: SET_CATS_THINGS,
+    catsFavoriteThings,
+  };
+};
+
+function reducer(state = initialState, action) {
   switch (action.type) {
+    case SET_PIGS_THINGS:
+      return { ...state, pigsThings: action.pigsFavoriteThings };
+    case SET_CATS_THINGS:
+      return { ...state, catsThings: action.catsFavoriteThings };
     default:
       return state;
   }
