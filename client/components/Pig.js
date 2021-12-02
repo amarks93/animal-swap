@@ -17,6 +17,8 @@ import ListItem from "./ListItem";
 //    in your componentDidMount. because you are "connected", you will find it on "props"
 // 4. find your pigsFavoriteThings on props
 
+import { connect } from "react-redux";
+
 class Pig extends React.Component {
   componentDidMount() {}
 
@@ -38,4 +40,12 @@ class Pig extends React.Component {
   }
 }
 
-export default Pig;
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pig);

@@ -17,6 +17,8 @@ import ListItem from "./ListItem";
 //    in your componentDidMount. because you are "connected", you will find it on "props"
 // 4. find your catsFavoriteThings on props
 
+import { connect } from "react-redux";
+
 class Cat extends React.Component {
   componentDidMount() {}
 
@@ -38,4 +40,12 @@ class Cat extends React.Component {
   }
 }
 
-export default Cat;
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cat);
