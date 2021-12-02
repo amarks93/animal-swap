@@ -17,3 +17,17 @@ import { catsFavoriteThings, pigsFavoriteThings } from "../data";
 // I DID NOT FEEL LIKE SETTING UP MY DATABASE...
 // YOU WILL NEVER AGAIN SEE IT IMPORTED LIKE I DID ON LINE 1
 // JUST PRETEND IT CAME FROM A DATABASE
+
+import { createStore, applyMiddleware } from "redux";
+import loggerMiddleware from "redux-logger";
+
+function reducer(state = {}, action) {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+const store = createStore(reducer, applyMiddleware(loggerMiddleware));
+
+export default store;
