@@ -17,3 +17,57 @@ import { catsFavoriteThings, pigsFavoriteThings } from "../data";
 // I DID NOT FEEL LIKE SETTING UP MY DATABASE...
 // YOU WILL NEVER AGAIN SEE IT IMPORTED LIKE I DID ON LINE 1
 // JUST PRETEND IT CAME FROM A DATABASE
+
+import { createStore, applyMiddleware } from "redux";
+import loggerMiddleware from "redux-logger";
+
+// ACTION TYPES
+const SET_PIGS_THINGS = "SET_PIGS_THINGS";
+const SET_CATS_THINGS = "SET_CATS_THINGS";
+const HIDE_CATS_THINGS = "HIDE_CATS_THINGS";
+
+// ACTION CREATORS
+export const setPigsThings = () => {
+  return {
+    type: SET_PIGS_THINGS,
+    pigsFavoriteThings,
+  };
+};
+
+export const setCatsThings = () => {
+  return {
+    type: SET_CATS_THINGS,
+    catsFavoriteThings,
+  };
+};
+
+export const hideCatsThings = () => {
+  return {
+    type: HIDE_CATS_THINGS,
+  };
+};
+
+const initialState = { catsThings: [], pigsThings: ["ball"] };
+
+function reducer(state = initialState, action) {
+  switch (action.type) {
+    case SET_PIGS_THINGS:
+      // {catsThings: [], pigsThings: action.pigsFavoriteThings}
+      return { ...state, pigsThings: action.pigsFavoriteThings };
+    case SET_CATS_THINGS:
+      return { ...state, catsThings: action.catsFavoriteThings };
+    case HIDE_CATS_THINGS:
+      return { ...state, catsThings: [] };
+    default:
+      return state;
+  }
+}
+
+// let oldThing  = state.pigsThings
+// let newThings = action.pigsFavoriteThings
+// { ...state, pigsThings: [...oldThing, newThings]}
+// { ------ , pigsThings: ["ball", all the other things]}
+
+const store = createStore(reducer, applyMiddleware(loggerMiddleware));
+
+export default store;

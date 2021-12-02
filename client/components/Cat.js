@@ -17,25 +17,41 @@ import ListItem from "./ListItem";
 //    in your componentDidMount. because you are "connected", you will find it on "props"
 // 4. find your catsFavoriteThings on props
 
-class Cat extends React.Component {
-  componentDidMount() {}
+import { connect } from "react-redux";
+import { setCatsThings, hideCatsThings } from "../store";
 
+class Cat extends React.Component {
   render() {
-    let catsFavoriteThings = [];
-    // const catsFavoriteThings = ["tuna", "bird watching", "naps", "tummy rubs"];
+    let catsFavoriteThings = this.props.catsThings;
+    console.log("CATS THINGS:", catsFavoriteThings);
     return (
       <div>
         <h2>This is a Cat.</h2>
         <img src="http://placekitten.com/200/300" />
         <h3>These are a cat's favorite things.</h3>
+        <button onClick={this.props.getCatsThings}>SHOW ME THE THINGS</button>
         <ul>
           {catsFavoriteThings.map((oneFavoriteThing, idx) => (
             <ListItem key={idx} item={oneFavoriteThing} />
           ))}
         </ul>
+        <button onClick={this.props.removeCatsThings}>HIDE CATS THINGS</button>
       </div>
     );
   }
 }
 
-export default Cat;
+const mapStateToProps = (state) => {
+  return {
+    catsThings: state.catsThings,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCatsThings: () => dispatch(setCatsThings()),
+    removeCatsThings: () => dispatch(hideCatsThings()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cat);

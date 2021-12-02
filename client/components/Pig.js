@@ -16,12 +16,16 @@ import ListItem from "./ListItem";
 // 3. call your new function that dispatches the imported function (wait, what)
 //    in your componentDidMount. because you are "connected", you will find it on "props"
 // 4. find your pigsFavoriteThings on props
+import { connect } from "react-redux";
+import { setPigsThings } from "../store";
 
 class Pig extends React.Component {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getPigsThings();
+  }
 
   render() {
-    let pigsFavoriteThings = [];
+    let pigsFavoriteThings = this.props.pigsThings;
     // const pigsFavoriteThings = ["mud", "pumpkins", "tummy rubs"];
     return (
       <div>
@@ -38,4 +42,16 @@ class Pig extends React.Component {
   }
 }
 
-export default Pig;
+const mapStateToProps = (state) => {
+  return {
+    pigsThings: state.pigsThings,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPigsThings: () => dispatch(setPigsThings()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pig);

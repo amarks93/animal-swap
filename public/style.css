@@ -57,7 +57,8 @@ div {
   background-color: antiquewhite;
 }
 
-select {
+select,
+button {
   width: 300px;
   height: 25px;
   background-color: bisque;
