@@ -18,13 +18,15 @@ import ListItem from "./ListItem";
 // 4. find your pigsFavoriteThings on props
 
 import { connect } from "react-redux";
+import { setPigsThings } from "../store";
 
 class Pig extends React.Component {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.gettingPigsThings();
+  }
 
   render() {
-    let pigsFavoriteThings = [];
-    // const pigsFavoriteThings = ["mud", "pumpkins", "tummy rubs"];
+    let pigsFavoriteThings = this.props.pigsThings;
     return (
       <div>
         <h2>This is a Pig.</h2>
@@ -41,11 +43,15 @@ class Pig extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    pigsThings: state.pigsThings,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    gettingPigsThings: () => dispatch(setPigsThings()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pig);

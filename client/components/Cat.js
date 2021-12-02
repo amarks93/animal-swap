@@ -18,13 +18,15 @@ import ListItem from "./ListItem";
 // 4. find your catsFavoriteThings on props
 
 import { connect } from "react-redux";
+import { setCatsThings } from "../store";
 
 class Cat extends React.Component {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.gettingCatsThings();
+  }
 
   render() {
-    let catsFavoriteThings = [];
-    // const catsFavoriteThings = ["tuna", "bird watching", "naps", "tummy rubs"];
+    let catsFavoriteThings = this.props.catsThings;
     return (
       <div>
         <h2>This is a Cat.</h2>
@@ -41,11 +43,15 @@ class Cat extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    catsThings: state.catsThings,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    gettingCatsThings: () => dispatch(setCatsThings()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cat);
